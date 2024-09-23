@@ -1,0 +1,18 @@
+<html>
+  <script>
+    fetch("https://profile-backend-98td.onrender.com/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        firstName: "John",
+        lastName: "Doe",
+        email: "john.doe@gmail.com",
+        password: "password123",
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  </script>
+</html>

@@ -14,7 +14,12 @@ app.use(express.json());
 // Register a new user
 app.post("/register", async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
-  console.log(req.body);
+
+  if (!firstName || !lastName || !email || !password) {
+    return res.status(400).json({
+      error: "All fields (firstName, lastName, email, password) are required",
+    });
+  }
 
   try {
     // Check if the user already exists
