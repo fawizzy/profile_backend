@@ -1,5 +1,6 @@
 const express = require("express");
 const { User } = require("./models");
+const cors = require("cors");
 const bcrypt = require("bcrypt"); // For password hashing
 const jwt = require("jsonwebtoken"); // For generating JWT tokens
 const app = express();
@@ -7,6 +8,7 @@ const port = 3000;
 
 const SECRET_KEY = "your_secret_key"; // Use a secure key for JWT
 
+app.use(cors());
 app.use(express.json());
 
 // Register a new user
