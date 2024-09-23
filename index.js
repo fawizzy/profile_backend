@@ -15,6 +15,8 @@ app.use(express.json());
 app.post("/register", async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
 
+  let missingFields = [];
+
   if (typeof firstName === "undefined") missingFields.push("firstName");
   if (typeof lastName === "undefined") missingFields.push("lastName");
   if (typeof email === "undefined") missingFields.push("email");
