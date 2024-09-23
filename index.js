@@ -15,9 +15,17 @@ app.use(express.json());
 app.post("/register", async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
 
-  if (!firstName || !lastName || !email || !password) {
+  if (typeof firstName === "undefined") missingFields.push("firstName");
+  if (typeof lastName === "undefined") missingFields.push("lastName");
+  if (typeof email === "undefined") missingFields.push("email");
+  if (typeof password === "undefined") missingFields.push("password");
+
+  // If there are missing fields, return an error
+  if (missingFields.length > 0) {
     return res.status(400).json({
-      error: "All fields (firstName, lastName, email, password) are required",
+      error: `The following fields are missing or undefined: ${missingFields.join(
+        ", "
+      )}`,
     });
   }
 
